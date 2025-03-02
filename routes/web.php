@@ -25,7 +25,13 @@ $router->post('/logout', 'UserController@logout');
 $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->get('/me', 'UserController@me');
 
-    
+    $router->group(['prefix' => 'transports'], function () use ($router) {
+        $router->get('/', 'TransportController@index');
+        $router->get('/{id}', 'TransportController@show');
+        $router->post('/', 'TransportController@store');
+        $router->patch('/{id}', 'TransportController@update');
+        $router->delete('/{id}', 'TransportController@destroy');
+    });
 });
 
 $router->group(['prefix' => 'users'], function () use ($router) {

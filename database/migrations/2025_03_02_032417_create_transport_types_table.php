@@ -3,27 +3,22 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+return new class extends Migration {
+    public function up()
     {
-        Schema::create('transport_types', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+        Schema::create('transport', function (Blueprint $table) {
+            $table->uuid('id')->primary(); // Menggunakan UUID
             $table->string('name');
+            $table->enum('type', ['bus', 'train', 'plane', 'ship']);
+            $table->integer('capacity');
             $table->timestamps();
         });
-        
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('transport_types');
+        Schema::dropIfExists('transports');
     }
 };
