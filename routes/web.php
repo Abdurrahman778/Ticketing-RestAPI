@@ -40,6 +40,14 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->patch('/{id}', 'RouteController@update');
         $router->delete('/{id}', 'RouteController@destroy');
     });
+
+    $router->group(['prefix' => 'tickets'], function () use ($router) {
+        $router->post('/', 'TicketController@store');
+        $router->get('/', 'TicketController@index');
+        $router->get('/{id}', 'TicketController@show');
+        $router->patch('/{id}', 'TicketController@update');
+        $router->delete('/{id}', 'TicketController@destroy');
+    });    
     
 });
 
