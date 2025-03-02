@@ -20,4 +20,8 @@ class Transport extends Model
             $model->id = Str::uuid(); // Otomatis generate UUID saat insert
         });
     }
+
+    public function routes() {
+        return $this->hasMany(Routes::class);
+    }
 }

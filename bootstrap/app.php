@@ -117,4 +117,12 @@ $app->router->group([
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
+$app->register(Illuminate\Validation\ValidationServiceProvider::class);
+
+$app->singleton('validator', function ($app) {
+    $validator = $app->make(Illuminate\Validation\Factory::class);
+    $validator->setPresenceVerifier($app->make(Illuminate\Validation\DatabasePresenceVerifier::class));
+    return $validator;
+});
+
 return $app;

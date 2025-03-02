@@ -32,6 +32,15 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->patch('/{id}', 'TransportController@update');
         $router->delete('/{id}', 'TransportController@destroy');
     });
+
+    $router->group(['prefix' => 'routes', 'middleware' => 'auth'], function () use ($router) {
+        $router->get('/', 'RouteController@index');
+        $router->get('/{id}', 'RouteController@show');
+        $router->post('/', 'RouteController@store');
+        $router->patch('/{id}', 'RouteController@update');
+        $router->delete('/{id}', 'RouteController@destroy');
+    });
+    
 });
 
 $router->group(['prefix' => 'users'], function () use ($router) {

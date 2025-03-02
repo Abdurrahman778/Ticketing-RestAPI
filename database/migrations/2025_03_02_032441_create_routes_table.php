@@ -16,7 +16,9 @@ return new class extends Migration
             $table->uuid('transport_type_id');
             $table->string('origin');
             $table->string('destination');
-            $table->string('duration');
+            $table->time('departure_time');
+            $table->time('arrival_time');
+            $table->decimal('price', 10, 2); // Harga tiket
             $table->timestamps();
         });
         
